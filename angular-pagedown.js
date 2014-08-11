@@ -1,7 +1,7 @@
 // adapted from http://stackoverflow.com/a/20957476/940030
 // TODO: create its own repo with pagedown dependencies (so that I can add it through bower)
 angular.module("ui.pagedown", [])
-.directive("pagedown", function ($compile, $timeout) {
+.directive("pagedownEditor", function ($compile) {
     var nextId = 0;
     var converter = Markdown.getSanitizingConverter();
 
@@ -49,6 +49,30 @@ angular.module("ui.pagedown", [])
             });
 
             editor.run();
+        }
+    }
+})
+.directive("pagedownViewer", function ($compile) {
+    var converter = Markdown.getSanitizingConverter();
+
+    return {
+        restrict: "E",
+        scope: {
+            content: "="
+        },
+        link: function (scope, element, attrs) {
+
+            var run = function run() {
+                scope.sanitizedContent = converter.makeHtml(scope.content);
+            };
+
+            run();
+            scope.$watch("content", run);
+
+            var newElementHtml = "<pre>{{sanitizedContent}}</pre>";
+            var newElement = $compile(newElementHtml)(scope);
+
+            element.append(newElement);
         }
     }
 });
