@@ -1,7 +1,6 @@
 // adapted from http://stackoverflow.com/a/20957476/940030
-// TODO: create its own repo with pagedown dependencies (so that I can add it through bower)
 angular.module("ui.pagedown", [])
-.directive("pagedownEditor", function ($compile) {
+.directive("pagedownEditor", function ($compile, $timeout) {
     var nextId = 0;
     var converter = Markdown.getSanitizingConverter();
 
@@ -48,11 +47,21 @@ angular.module("ui.pagedown", [])
                 handler: help
             });
 
+            var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
+
+            editor.hooks.chain("onPreviewRefresh", function() {
+                // wire up changes caused by user interaction with the pagedown controls
+                // and do within $apply
+                $timeout(function() {
+                    scope.content = editorElement.val();
+                });
+            });
+
             editor.run();
         }
     }
 })
-.directive("pagedownViewer", function ($compile) {
+.directive("pagedownViewer", function ($compile, $sce) {
     var converter = Markdown.getSanitizingConverter();
 
     return {
@@ -63,13 +72,13 @@ angular.module("ui.pagedown", [])
         link: function (scope, element, attrs) {
 
             var run = function run() {
-                scope.sanitizedContent = converter.makeHtml(scope.content);
+                scope.sanitizedContent = $sce.trustAsHtml(converter.makeHtml(scope.content));
             };
 
             run();
             scope.$watch("content", run);
 
-            var newElementHtml = "<pre>{{sanitizedContent}}</pre>";
+            var newElementHtml = "<pre ng-bind-html='sanitizedContent'></pre>";
             var newElement = $compile(newElementHtml)(scope);
 
             element.append(newElement);
