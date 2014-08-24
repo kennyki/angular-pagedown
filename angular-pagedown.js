@@ -70,13 +70,20 @@ angular.module("ui.pagedown", [])
             content: "="
         },
         link: function (scope, element, attrs) {
-
+            var unwatch;
             var run = function run() {
+                // stop continuing and watching if scope or the content is unreachable
+                if (!scope || (scope.content == undefined || scope.content == null) && unwatch) {
+                    unwatch();
+                    return;
+                }
+
                 scope.sanitizedContent = $sce.trustAsHtml(converter.makeHtml(scope.content));
             };
 
+            unwatch = scope.$watch("content", run);
+
             run();
-            scope.$watch("content", run);
 
             var newElementHtml = "<pre ng-bind-html='sanitizedContent'></pre>";
             var newElement = $compile(newElementHtml)(scope);
