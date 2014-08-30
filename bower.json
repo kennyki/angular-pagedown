@@ -1,6 +1,6 @@
 {
   "name": "angular-pagedown",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "angular-pagedown.js",
   "dependencies": {
     "pagedown": "^1.1.0"

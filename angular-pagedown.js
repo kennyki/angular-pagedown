@@ -14,6 +14,7 @@ angular.module("ui.pagedown", [])
         restrict: "E",
         scope: {
             content: "=",
+            showPreview: "@",
             help: "&"
         },
         link: function (scope, element, attrs) {
@@ -26,13 +27,15 @@ angular.module("ui.pagedown", [])
                 editorUniqueId = attrs.id;
             }
 
+            var previewHtml = scope.showPreview != false ? '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview"></div>' : '';
+
             var newElement = $compile(
                 '<div>' +
-                     '<div class="wmd-panel">' +
+                    '<div class="wmd-panel">' +
                             '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
                             '<textarea class="wmd-input" id="wmd-input-' + editorUniqueId + '" ng-model="content"></textarea>' +
-                     '</div>' +
-                     '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview"></div>' +
+                    '</div>' +
+                    previewHtml +
                 '</div>')(scope);
 
             // html() doesn't work
