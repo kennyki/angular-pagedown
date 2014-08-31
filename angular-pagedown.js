@@ -27,7 +27,7 @@ angular.module("ui.pagedown", [])
                 editorUniqueId = attrs.id;
             }
 
-            var previewHtml = scope.showPreview != false ? '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview"></div>' : '';
+            var previewHtml = scope.showPreview != "false" ? '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview"></div>' : '';
 
             var newElement = $compile(
                 '<div>' +
