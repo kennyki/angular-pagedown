@@ -27,7 +27,8 @@ angular.module("ui.pagedown", [])
                 editorUniqueId = attrs.id;
             }
 
-            var previewHtml = scope.showPreview != "false" ? '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview"></div>' : '';
+            // just hide the preview, we still need it for "onPreviewRefresh" hook
+            var previewHiddenClass = scope.showPreview == "false" ? "hidden" : "";
 
             var newElement = $compile(
                 '<div>' +
@@ -35,7 +36,7 @@ angular.module("ui.pagedown", [])
                             '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
                             '<textarea class="wmd-input" id="wmd-input-' + editorUniqueId + '" ng-model="content"></textarea>' +
                     '</div>' +
-                    previewHtml +
+                    '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview ' + previewHiddenClass + '"></div>' +
                 '</div>')(scope);
 
             // html() doesn't work
