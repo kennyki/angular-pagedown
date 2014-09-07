@@ -1,6 +1,6 @@
 // adapted from http://stackoverflow.com/a/20957476/940030
 angular.module("ui.pagedown", [])
-.directive("pagedownEditor", function ($compile, $timeout) {
+.directive("pagedownEditor", function ($compile, $timeout, $window, $q) {
     var nextId = 0;
     var converter = Markdown.getSanitizingConverter();
 
@@ -15,7 +15,8 @@ angular.module("ui.pagedown", [])
         scope: {
             content: "=",
             showPreview: "@",
-            help: "&"
+            help: "&",
+            insertImage: "&"
         },
         link: function (scope, element, attrs) {
 
@@ -43,8 +44,8 @@ angular.module("ui.pagedown", [])
             element.append(newElement);
 
             var help = angular.isFunction(scope.help) ? scope.help : function () {
-                // TODO: allow option for setting this
-                alert("There is no help available");
+                // redirect to the guide by default
+                $window.open("http://daringfireball.net/projects/markdown/syntax", "_blank");
             };
 
             var editor = new Markdown.Editor(converter, "-" + editorUniqueId, {
@@ -60,6 +61,34 @@ angular.module("ui.pagedown", [])
                     scope.content = editorElement.val();
                 });
             });
+
+            if (angular.isFunction(scope.insertImage)) {
+                editor.hooks.set("insertImageDialog", function(callback) {
+                    // expect it to return a promise or a url string
+                    var result = scope.insertImage();
+
+                    // Note that you cannot call the callback directly from the hook; you have to wait for the current scope to be exited.
+                    // https://code.google.com/p/pagedown/wiki/PageDown#insertImageDialog
+                    $timeout(function() {
+                        if (!result) {
+                            // must be null to indicate failure
+                            callback(null);
+                        } else {
+                            // safe way to handle either string or promise
+                            $q.when(result).then(
+                                function success(imgUrl) {
+                                    callback(imgUrl);
+                                },
+                                function error(reason) {
+                                    callback(null);
+                                }
+                            );
+                        }
+                    });
+
+                    return true;
+                });
+            }
 
             editor.run();
         }
