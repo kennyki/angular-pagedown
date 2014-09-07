@@ -16,7 +16,7 @@ A pagedown editor for angular
 
 This package comes with 2 directives:
 
-__Editor__
+## Editor
 
 ```html
 <pagedown-editor content="data.content"></pagedown-editor>
@@ -24,17 +24,32 @@ __Editor__
 
 Options:
 
-1. **content**: a parent scope variable. *String; Mandatory*
-1. **show-preview**: should a live preview be displayed. *Boolean; Default to true*
-1. **help**: an expression to invoke upon clicking the help (?) button. *Expression; Default to open this [guide]("http://daringfireball.net/projects/markdown/syntax") in new window*
-  1. Example: `<pagedown-editor content="data.content" help="showSomeHelp()"></pagedown-editor>`
-1. **insert-image**: an expression to invoke upon clicking the "Insert Image" button. *Expression; Default to null*
-  1. Example: `<pagedown-editor content="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
+#### content
+
+1. A parent scope variable. 
+1. *String; Mandatory*
+
+#### show-preview
+
+1. Should a live preview be displayed. 
+1. *Boolean; Default to true*
+
+#### help
+
+1. An expression to invoke upon clicking the help (?) button. 
+1. *Expression; Default to open http://daringfireball.net/projects/markdown/syntax in new window*
+1. Example: `<pagedown-editor content="data.content" help="showSomeHelp()"></pagedown-editor>`
+
+#### insert-image
+
+1. An expression to invoke upon clicking the "Insert Image" button. 
+1. *Expression; Default to null*
+1. Example: `<pagedown-editor content="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
   1. The parent scope function `promptImageUrl` must return either:
     1. A string of image URL.
     1. A promise resolved with a string of image URL.
 
-__Viewer__
+## Viewer
 
 ```html
 <pagedown-viewer content="data.content"></pagedown-viewer>
