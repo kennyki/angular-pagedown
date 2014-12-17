@@ -3,6 +3,7 @@ angular.module("ui.pagedown", [])
 .directive("pagedownEditor", function ($compile, $timeout, $window, $q) {
     var nextId = 0;
     var converter = Markdown.getSanitizingConverter();
+    Markdown.Extra.init(converter);
 
     converter.hooks.chain("preBlockGamut", function (text, rbg) {
         return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
@@ -96,6 +97,7 @@ angular.module("ui.pagedown", [])
 })
 .directive("pagedownViewer", function ($compile, $sce) {
     var converter = Markdown.getSanitizingConverter();
+    Markdown.Extra.init(converter);
 
     return {
         restrict: "E",
