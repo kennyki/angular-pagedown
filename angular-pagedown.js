@@ -1,8 +1,15 @@
+// Mardown Extra Options
+var mdExtraOptions = {
+    extensions: "all",
+    table_class: 'table'
+};
+
 // adapted from http://stackoverflow.com/a/20957476/940030
 angular.module("ui.pagedown", [])
 .directive("pagedownEditor", function ($compile, $timeout, $window, $q) {
     var nextId = 0;
     var converter = Markdown.getSanitizingConverter();
+    Markdown.Extra.init(converter, mdExtraOptions);
 
     converter.hooks.chain("preBlockGamut", function (text, rbg) {
         return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
@@ -96,6 +103,7 @@ angular.module("ui.pagedown", [])
 })
 .directive("pagedownViewer", function ($compile, $sce) {
     var converter = Markdown.getSanitizingConverter();
+    Markdown.Extra.init(converter, mdExtraOptions);
 
     return {
         restrict: "E",

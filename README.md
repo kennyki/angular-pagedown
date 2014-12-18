@@ -9,6 +9,7 @@ A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/9PHabp
 1. Import these files in your HTML
   1. pagedown/Markdown.Converter.js
   1. pagedown/Markdown.Sanitizer.js
+  1. pagedown/Markdown.Extra.js
   1. pagedown/Markdown.Editor.js
   1. angular-pagedown/angular-pagedown.js
   1. angular-pagedown/angular-pagedown.css
