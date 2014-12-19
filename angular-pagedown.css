@@ -63,7 +63,7 @@ blockquote {
 }
 
 .wmd-button > span {
-    background-image: url(wmd-buttons.png);
+    background-image: url(../pagedown/wmd-buttons.png); /* Assumes both pagedown and angular-pagedown are installed in same bower root (see .bowerrc) */
     background-repeat: no-repeat;
     background-position: 0px 0px;
     width: 20px;
