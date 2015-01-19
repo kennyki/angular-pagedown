@@ -6,7 +6,7 @@ var mdExtraOptions = {
 
 // adapted from http://stackoverflow.com/a/20957476/940030
 angular.module("ui.pagedown", [])
-.directive("pagedownEditor", function ($compile, $timeout, $window, $q) {
+.directive("pagedownEditor", ['$compile', '$timeout', '$window', '$q', function ($compile, $timeout, $window, $q) {
     var nextId = 0;
     var converter = Markdown.getSanitizingConverter();
     Markdown.Extra.init(converter, mdExtraOptions);
@@ -100,8 +100,8 @@ angular.module("ui.pagedown", [])
             editor.run();
         }
     }
-})
-.directive("pagedownViewer", function ($compile, $sce) {
+}])
+.directive("pagedownViewer", ['$compile', '$sce', function ($compile, $sce) {
     var converter = Markdown.getSanitizingConverter();
     Markdown.Extra.init(converter, mdExtraOptions);
 
@@ -132,4 +132,4 @@ angular.module("ui.pagedown", [])
             element.append(newElement);
         }
     }
-});
+}]);
