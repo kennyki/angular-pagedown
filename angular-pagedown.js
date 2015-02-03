@@ -16,7 +16,7 @@ angular.module("ui.pagedown", [])
             return "<blockquote>" + rbg(inner) + "</blockquote>\n";
         });
     });
-    
+
     return {
         restrict: "E",
         scope: {
@@ -61,6 +61,12 @@ angular.module("ui.pagedown", [])
 
             var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
 
+            //add watch for content
+            if(scope.showPreview != "false") {
+                scope.$watch('content', function () {
+                    editor.refreshPreview();
+                });
+            }
             editor.hooks.chain("onPreviewRefresh", function() {
                 // wire up changes caused by user interaction with the pagedown controls
                 // and do within $apply
