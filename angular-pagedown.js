@@ -21,6 +21,7 @@ angular.module("ui.pagedown", [])
         restrict: "E",
         scope: {
             content: "=",
+            placeholder: "=",
             showPreview: "@",
             help: "&",
             insertImage: "&"
@@ -38,11 +39,13 @@ angular.module("ui.pagedown", [])
             // just hide the preview, we still need it for "onPreviewRefresh" hook
             var previewHiddenStyle = scope.showPreview == "false" ? "display: none;" : "";
 
+            var placeholder = attrs.placeholder !== undefined ? scope.placeholder : "";
+
             var newElement = $compile(
                 '<div>' +
                     '<div class="wmd-panel">' +
                             '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
-                            '<textarea class="wmd-input" id="wmd-input-' + editorUniqueId + '" ng-model="content"></textarea>' +
+                            '<textarea class="wmd-input" id="wmd-input-' + editorUniqueId + '" ng-model="content" placeholder="' + placeholder + '"></textarea>' +
                     '</div>' +
                     '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview" style="' + previewHiddenStyle + '"></div>' +
                 '</div>')(scope);
