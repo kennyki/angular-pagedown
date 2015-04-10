@@ -21,7 +21,7 @@ angular.module("ui.pagedown", [])
         restrict: "E",
         scope: {
             content: "=",
-            placeholder: "=",
+            placeholder: "@",
             showPreview: "@",
             help: "&",
             insertImage: "&"
@@ -39,7 +39,7 @@ angular.module("ui.pagedown", [])
             // just hide the preview, we still need it for "onPreviewRefresh" hook
             var previewHiddenStyle = scope.showPreview == "false" ? "display: none;" : "";
 
-            var placeholder = attrs.placeholder !== undefined ? scope.placeholder : "";
+            var placeholder = attrs.placeholder !== undefined ? attrs.placeholder : "";
 
             var newElement = $compile(
                 '<div>' +
