@@ -1,6 +1,6 @@
 # angular-pagedown
 
-A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/1Vxo5UfYpHQdjhWatimU) for demo.
+A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/Q3DM3cK7AGV1CGUfUoI8) for demo.
 
 ## Instructions
 
@@ -54,7 +54,7 @@ Options:
 
 1. A parent scope variable.  When set, the placeholder attribute in the `textarea` element will be set to the scope variable.
 1. *String; Default to empty string*
-1. Example: `<pagedown-editor content="data.content" placeholder="data.placeholder"></pagedown-editor>` 
+1. Example: `<pagedown-editor content="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>` 
 
 ## Viewer
 
