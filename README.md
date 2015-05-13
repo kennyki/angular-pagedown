@@ -1,6 +1,6 @@
 # angular-pagedown
 
-A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/9PHabp) for demo.
+A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/Q3DM3cK7AGV1CGUfUoI8) for demo.
 
 ## Instructions
 
@@ -49,6 +49,12 @@ Options:
   1. The parent scope function `promptImageUrl` must return either:
     1. A string of image URL.
     1. A promise resolved with a string of image URL.
+
+#### placeholder
+
+1. A parent scope variable.  When set, the placeholder attribute in the `textarea` element will be set to the scope variable.
+1. *String; Default to empty string*
+1. Example: `<pagedown-editor content="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>` 
 
 ## Viewer
 
