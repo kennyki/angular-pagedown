@@ -135,7 +135,7 @@ angular.module("ui.pagedown", [])
 
             run();
 
-            var newElementHtml = "<pre ng-bind-html='sanitizedContent'></pre>";
+            var newElementHtml = "<p ng-bind-html='sanitizedContent'></p>";
             var newElement = $compile(newElementHtml)(scope);
 
             element.append(newElement);
