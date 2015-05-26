@@ -1,6 +1,6 @@
 # angular-pagedown
 
-A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/Q3DM3cK7AGV1CGUfUoI8) for demo.
+A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/YFT01S75f8dpW0QbpM7J) for demo.
 
 ## Instructions
 
