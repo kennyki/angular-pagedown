@@ -24,7 +24,10 @@ angular.module("ui.pagedown", [])
             placeholder: "@",
             showPreview: "@",
             help: "&",
-            insertImage: "&"
+            insertImage: "&",
+            editorClass: "=",
+            editorRows: "@",
+            previewClass: "="
         },
         link: function (scope, element, attrs) {
 
@@ -39,15 +42,20 @@ angular.module("ui.pagedown", [])
             // just hide the preview, we still need it for "onPreviewRefresh" hook
             var previewHiddenStyle = scope.showPreview == "false" ? "display: none;" : "";
 
-            var placeholder = attrs.placeholder !== undefined ? attrs.placeholder : "";
+            var placeholder = attrs.placeholder || "";
+            var editorRows = attrs.editorRows || "10";
 
             var newElement = $compile(
                 '<div>' +
                     '<div class="wmd-panel">' +
-                            '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
-                            '<textarea class="wmd-input" id="wmd-input-' + editorUniqueId + '" ng-model="content" placeholder="' + placeholder + '"></textarea>' +
+                        '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
+                        '<textarea id="wmd-input-' + editorUniqueId + '" placeholder="' + placeholder + '" ng-model="content"' +
+                        ' row="' + editorRows + '" ' + (scope.editorClass ? 'ng-class="editorClass"' : 'class="wmd-input"') + '>' +
+                        '</textarea>' +
                     '</div>' +
-                    '<div id="wmd-preview-' + editorUniqueId + '" class="pagedown-preview wmd-panel wmd-preview" style="' + previewHiddenStyle + '"></div>' +
+                    '<div id="wmd-preview-' + editorUniqueId + '" style="' + previewHiddenStyle + '"' +
+                    ' ' + (scope.previewClass ? 'ng-class="previewClass"' : 'class="wmd-panel wmd-preview"') + '>' +
+                    '</div>' +
                 '</div>')(scope);
 
             // html() doesn't work
@@ -120,18 +128,16 @@ angular.module("ui.pagedown", [])
             content: "="
         },
         link: function (scope, element, attrs) {
-            var unwatch;
             var run = function run() {
-                // stop continuing and watching if scope or the content is unreachable
-                if (!scope || (scope.content == undefined || scope.content == null) && unwatch) {
-                    unwatch();
+                if (!scope.content) {
+                    scope.sanitizedContent = '';
                     return;
                 }
 
                 scope.sanitizedContent = $sce.trustAsHtml(converter.makeHtml(scope.content));
             };
 
-            unwatch = scope.$watch("content", run);
+            scope.$watch("content", run);
 
             run();
 

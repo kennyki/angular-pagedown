@@ -1,6 +1,6 @@
 # angular-pagedown
 
-A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/YFT01S75f8dpW0QbpM7J) for demo.
+A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/2LZiw454g77k6aE3HTyd) for demo.
 
 ## Instructions
 
@@ -41,34 +41,55 @@ Options:
 
 #### content
 
-1. A parent scope variable. 
-1. *String; Mandatory*
+1. An expression. 
+1. *Expression*: Mandatory
+1. Example: `<pagedown-editor content="data.content"></pagedown-editor>`
+1. Example: `<pagedown-editor content="'**some** _markdown_ text'"></pagedown-editor>`
 
 #### show-preview
 
 1. Should a live preview be displayed. 
-1. *Boolean; Default to true*
+1. *Boolean*: Default to true
 
 #### help
 
 1. An expression to invoke upon clicking the help (?) button. 
-1. *Expression; Default to open http://daringfireball.net/projects/markdown/syntax in new window*
+1. *Expression*: Default to open http://daringfireball.net/projects/markdown/syntax in new window
 1. Example: `<pagedown-editor content="data.content" help="showSomeHelp()"></pagedown-editor>`
 
 #### insert-image
 
 1. An expression to invoke upon clicking the "Insert Image" button. 
-1. *Expression; Default to null*
+1. *Expression*: Default to `noop`
 1. Example: `<pagedown-editor content="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
   1. The parent scope function `promptImageUrl` must return either:
-    1. A string of image URL.
-    1. A promise resolved with a string of image URL.
+    - A string of image URL.
+    - A promise resolved with a string of image URL.
 
 #### placeholder
 
-1. A parent scope variable.  When set, the placeholder attribute in the `textarea` element will be set to the scope variable.
-1. *String; Default to empty string*
+1. An expression.
+1. *Expression*: Default to empty string
 1. Example: `<pagedown-editor content="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>` 
+
+#### editor-class
+
+1. An expression to use as [ngClass](https://docs.angularjs.org/api/ng/directive/ngClass).
+1. *Expression*: Default to `wmd-input`
+1. Example: `<pagedown-editor content="data.content" editorClass="{'a-class': true}"></pagedown-editor>`
+1. Example: `<pagedown-editor content="data.content" editorClass="'a-class another-class'"></pagedown-editor>`
+1. Example: `<pagedown-editor content="data.content" editorClass="aScopeVariable"></pagedown-editor>`
+
+#### editor-rows
+
+1. Number of rows for the `<textarea>` element
+1. *Number*: default to 10
+
+#### preview-class
+
+1. An expression to use as [ngClass](https://docs.angularjs.org/api/ng/directive/ngClass).
+1. *Expression*: Default to `wmd-panel wmd-preview`
+1. See `editor-class`
 
 ## Viewer
 
