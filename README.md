@@ -22,7 +22,8 @@ A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/2LZiw4
         "Markdown.Converter.js",
         "Markdown.Sanitizer.js",
         "Markdown.Extra.js",
-        "Markdown.Editor.js"
+        "Markdown.Editor.js",
+        "wmd-buttons.png"
       ]
     }
   }
