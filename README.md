@@ -13,6 +13,7 @@ A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/YFT01S
   1. pagedown/Markdown.Editor.js
   1. angular-pagedown/angular-pagedown.js
   1. angular-pagedown/angular-pagedown.css
+1. If you're using a build tool like [grunt/gulp's main-bower-files](https://github.com/ck86/main-bower-files), you **don't need to import the files manually**.
 1. Include dependency in your app `angular.module("yourApp", ["ui.pagedown"]);`
 
 This package comes with 2 directives:
