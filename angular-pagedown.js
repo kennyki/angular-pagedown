@@ -25,10 +25,10 @@ angular.module("ui.pagedown", [])
             showPreview: "@",
             help: "&",
             insertImage: "&",
-            editorClass: "=",
+            editorClass: "=?",
             editorRows: "@",
-            previewClass: "=",
-            previewContent: "="
+            previewClass: "=?",
+            previewContent: "=?"
         },
         link: function (scope, element, attrs) {
 
@@ -71,12 +71,11 @@ angular.module("ui.pagedown", [])
                 handler: help
             });
 
-            if (scope.previewContent) {
-                converter.hooks.chain("postConversion", function(text) {
-                    // update
-                    scope.previewContent = text;
-                });
-            }
+            converter.hooks.chain("postConversion", function(text) {
+                // update
+                scope.previewContent = text;
+                return text;
+            });
 
             var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
 
