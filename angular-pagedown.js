@@ -71,10 +71,12 @@ angular.module("ui.pagedown", [])
                 handler: help
             });
 
-            converter.hooks.chain("postConversion", function(text) {
-                // update
-                scope.previewContent = text;
-            });
+            if (scope.previewContent) {
+                converter.hooks.chain("postConversion", function(text) {
+                    // update
+                    scope.previewContent = text;
+                });
+            }
 
             var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
 
