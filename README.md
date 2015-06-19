@@ -91,6 +91,11 @@ Options:
 1. *Expression*: Default to `wmd-panel wmd-preview`
 1. See `editor-class`
 
+#### preview-content
+
+1. An expression, will be updated with converted HTML when the editor content changes. Can be coupled with `show-preview="false"` and a custom previewer.
+1. Optional
+
 ## Viewer
 
 ```html

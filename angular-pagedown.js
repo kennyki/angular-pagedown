@@ -27,7 +27,8 @@ angular.module("ui.pagedown", [])
             insertImage: "&",
             editorClass: "=",
             editorRows: "@",
-            previewClass: "="
+            previewClass: "=",
+            previewContent: "="
         },
         link: function (scope, element, attrs) {
 
@@ -50,7 +51,7 @@ angular.module("ui.pagedown", [])
                     '<div class="wmd-panel">' +
                         '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
                         '<textarea id="wmd-input-' + editorUniqueId + '" placeholder="' + placeholder + '" ng-model="content"' +
-                        ' row="' + editorRows + '" ' + (scope.editorClass ? 'ng-class="editorClass"' : 'class="wmd-input"') + '>' +
+                        ' rows="' + editorRows + '" ' + (scope.editorClass ? 'ng-class="editorClass"' : 'class="wmd-input"') + '>' +
                         '</textarea>' +
                     '</div>' +
                     '<div id="wmd-preview-' + editorUniqueId + '" style="' + previewHiddenStyle + '"' +
@@ -70,9 +71,14 @@ angular.module("ui.pagedown", [])
                 handler: help
             });
 
+            converter.hooks.chain("postConversion", function(text) {
+                // update
+                scope.previewContent = text;
+            });
+
             var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
 
-            //add watch for content
+            // add watch for content
             if(scope.showPreview != "false") {
                 scope.$watch('content', function () {
                     editor.refreshPreview();
