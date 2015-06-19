@@ -1,6 +1,6 @@
 {
   "name": "angular-pagedown",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": [
     "angular-pagedown.css",
     "angular-pagedown.js"
@@ -8,15 +8,5 @@
   "dependencies": {
   	"angular": "~1.2",
     "pagedown": "^1.1.0"
-  },
-  "overrides": {
-    "pagedown": {
-      "main": [
-        "Markdown.Converter.js",
-        "Markdown.Sanitizer.js",
-        "Markdown.Extra.js",
-        "Markdown.Editor.js"
-      ]
-    }
   }
 }
