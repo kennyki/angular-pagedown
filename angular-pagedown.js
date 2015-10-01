@@ -19,8 +19,9 @@ angular.module("ui.pagedown", [])
 
     return {
         restrict: "E",
+        require: 'ngModel',
         scope: {
-            content: "=",
+            ngModel: "=",
             placeholder: "@",
             showPreview: "@",
             help: "&",
@@ -30,7 +31,12 @@ angular.module("ui.pagedown", [])
             previewClass: "=?",
             previewContent: "=?"
         },
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attrs, ngModel) {
+
+            scope.changed = function() {
+                ngModel.$setDirty();
+                scope.$parent.$eval(attrs.ngChange);
+            };
 
             var editorUniqueId;
 
@@ -50,7 +56,8 @@ angular.module("ui.pagedown", [])
                 '<div>' +
                     '<div class="wmd-panel">' +
                         '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
-                        '<textarea id="wmd-input-' + editorUniqueId + '" placeholder="' + placeholder + '" ng-model="content"' +
+                        '<textarea id="wmd-input-' + editorUniqueId + '" placeholder="' + placeholder + '" ng-model="ngModel"' +
+                        ' ng-change="changed()"' +
                         ' rows="' + editorRows + '" ' + (scope.editorClass ? 'ng-class="editorClass"' : 'class="wmd-input"') + '>' +
                         '</textarea>' +
                     '</div>' +
