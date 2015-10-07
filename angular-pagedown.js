@@ -33,6 +33,12 @@ angular.module("ui.pagedown", [])
             },
             link: function (scope, element, attrs, ngModel) {
 
+                scope.changed = function () {
+                    ngModel.$setDirty();
+                    scope.$parent.$eval(attrs.ngChange);
+                };
+
+
                 var editorUniqueId;
 
                 if (attrs.id == null) {
@@ -52,6 +58,7 @@ angular.module("ui.pagedown", [])
                     '<div class="wmd-panel">' +
                     '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
                     '<textarea id="wmd-input-' + editorUniqueId + '" placeholder="' + placeholder + '" ng-model="ngModel"' +
+                    ' ng-change="changed()"' +
                     ' rows="' + editorRows + '" ' + (scope.editorClass ? 'ng-class="editorClass"' : 'class="wmd-input"') + '>' +
                     '</textarea>' +
                     '</div>' +
@@ -73,21 +80,14 @@ angular.module("ui.pagedown", [])
                 });
 
                 converter.hooks.chain("postConversion", function (text) {
+                    scope.changed();
+
                     // update
                     scope.previewContent = text;
                     return text;
                 });
 
                 var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
-
-
-                scope.$watch(function () {
-                    return editorElement[0].value;
-                }, function (newVal) {
-                    ngModel.$setViewValue(newVal);
-                    ngModel.$setDirty();
-                    scope.$parent.$eval(attrs.ngChange);
-                });
 
 
                 // add watch for content
