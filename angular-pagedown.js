@@ -79,15 +79,16 @@ angular.module("ui.pagedown", [])
                     handler: help
                 });
 
+
+                var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
+
                 converter.hooks.chain("postConversion", function (text) {
-                    scope.changed();
+                    ngModel.$setViewValue(editorElement.val());
 
                     // update
                     scope.previewContent = text;
                     return text;
                 });
-
-                var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
 
 
                 // add watch for content
