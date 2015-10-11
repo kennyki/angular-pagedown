@@ -82,6 +82,8 @@ angular.module("ui.pagedown", [])
 
                 var editorElement = angular.element(document.getElementById("wmd-input-" + editorUniqueId));
 
+                editorElement.val(scope.ngModel);
+
                 converter.hooks.chain("postConversion", function (text) {
                     ngModel.$setViewValue(editorElement.val());
 
