@@ -85,7 +85,9 @@ angular.module("ui.pagedown", [])
                 editorElement.val(scope.ngModel);
 
                 converter.hooks.chain("postConversion", function (text) {
-                    ngModel.$setViewValue(editorElement.val());
+
+                    if (scope.ngModel !== editorElement.val())
+                        ngModel.$setViewValue(editorElement.val());
 
                     // update
                     scope.previewContent = text;
