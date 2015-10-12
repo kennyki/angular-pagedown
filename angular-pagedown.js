@@ -33,10 +33,7 @@ angular.module("ui.pagedown", [])
             },
             link: function (scope, element, attrs, ngModel) {
 
-                scope.changed = function () {
-                    ngModel.$setDirty();
-                    scope.$parent.$eval(attrs.ngChange);
-                };
+
 
 
                 var editorUniqueId;
@@ -84,13 +81,23 @@ angular.module("ui.pagedown", [])
 
                 editorElement.val(scope.ngModel);
 
+
+                scope.changed = function () {
+                    var v = editorElement.val();
+                    ngModel.$setViewValue(v);
+                };
+
                 converter.hooks.chain("postConversion", function (text) {
 
-                    if (scope.ngModel !== editorElement.val())
-                        ngModel.$setViewValue(editorElement.val());
+                    var v = editorElement.val();
+                    if (scope.ngModel !== v) {
+                        ngModel.$setViewValue(v);
+                    }
+
 
                     // update
                     scope.previewContent = text;
+
                     return text;
                 });
 
