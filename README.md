@@ -35,34 +35,45 @@ This package comes with 2 directives:
 ## Editor
 
 ```html
-<pagedown-editor content="data.content"></pagedown-editor>
+<pagedown-editor ng-model="data.content"></pagedown-editor>
 ```
 
 Options:
 
-#### content
+#### ng-model
 
-1. An expression. 
+1. An expression.
 1. *Expression*: Mandatory
-1. Example: `<pagedown-editor content="data.content"></pagedown-editor>`
-1. Example: `<pagedown-editor content="'**some** _markdown_ text'"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="'**some** _markdown_ text'"></pagedown-editor>`
+
+#### ng-change
+
+1. An expression.
+1. *Expression*: Optional
+1. Example: `<pagedown-editor ng-change="log()"></pagedown-editor>`
+
+#### $dirty
+
+- `<pagedown-editor ng-model="data.content" name="mdInput"></pagedown-editor>`
+ - ``<dd ng-bind="myForm.mdInput.$dirty"></dd>``
 
 #### show-preview
 
-1. Should a live preview be displayed. 
+1. Should a live preview be displayed.
 1. *Boolean*: Default to true
 
 #### help
 
-1. An expression to invoke upon clicking the help (?) button. 
+1. An expression to invoke upon clicking the help (?) button.
 1. *Expression*: Default to open http://daringfireball.net/projects/markdown/syntax in new window
-1. Example: `<pagedown-editor content="data.content" help="showSomeHelp()"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" help="showSomeHelp()"></pagedown-editor>`
 
 #### insert-image
 
-1. An expression to invoke upon clicking the "Insert Image" button. 
+1. An expression to invoke upon clicking the "Insert Image" button.
 1. *Expression*: Default to `noop`
-1. Example: `<pagedown-editor content="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
   1. The parent scope function `promptImageUrl` must return either:
     - A string of image URL.
     - A promise resolved with a string of image URL.
@@ -71,15 +82,15 @@ Options:
 
 1. An expression.
 1. *Expression*: Default to empty string
-1. Example: `<pagedown-editor content="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>` 
+1. Example: `<pagedown-editor ng-model="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>`
 
 #### editor-class
 
 1. An expression to use as [ngClass](https://docs.angularjs.org/api/ng/directive/ngClass).
 1. *Expression*: Default to `wmd-input`
-1. Example: `<pagedown-editor content="data.content" editorClass="{'a-class': true}"></pagedown-editor>`
-1. Example: `<pagedown-editor content="data.content" editorClass="'a-class another-class'"></pagedown-editor>`
-1. Example: `<pagedown-editor content="data.content" editorClass="aScopeVariable"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" editorClass="{'a-class': true}"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" editorClass="'a-class another-class'"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" editorClass="aScopeVariable"></pagedown-editor>`
 
 #### editor-rows
 
