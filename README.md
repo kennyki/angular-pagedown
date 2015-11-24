@@ -1,6 +1,6 @@
 # angular-pagedown
 
-A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/2LZiw454g77k6aE3HTyd) for demo.
+A pagedown editor for AngularJS. View this [Plunker](http://plnkr.co/edit/m93lSn?p=preview) for demo.
 
 ## Instructions
 
@@ -35,17 +35,17 @@ This package comes with 2 directives:
 ## Editor
 
 ```html
-<pagedown-editor content="data.content"></pagedown-editor>
+<pagedown-editor ng-model="data.content"></pagedown-editor>
 ```
 
 Options:
 
-#### content
+#### ng-model
 
 1. An expression. 
 1. *Expression*: Mandatory
-1. Example: `<pagedown-editor content="data.content"></pagedown-editor>`
-1. Example: `<pagedown-editor content="'**some** _markdown_ text'"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="'**some** _markdown_ text'"></pagedown-editor>`
 
 #### show-preview
 
@@ -56,13 +56,13 @@ Options:
 
 1. An expression to invoke upon clicking the help (?) button. 
 1. *Expression*: Default to open http://daringfireball.net/projects/markdown/syntax in new window
-1. Example: `<pagedown-editor content="data.content" help="showSomeHelp()"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" help="showSomeHelp()"></pagedown-editor>`
 
 #### insert-image
 
 1. An expression to invoke upon clicking the "Insert Image" button. 
 1. *Expression*: Default to `noop`
-1. Example: `<pagedown-editor content="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" insert-image="promptImageUrl()"></pagedown-editor>`
   1. The parent scope function `promptImageUrl` must return either:
     - A string of image URL.
     - A promise resolved with a string of image URL.
@@ -71,15 +71,15 @@ Options:
 
 1. An expression.
 1. *Expression*: Default to empty string
-1. Example: `<pagedown-editor content="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>` 
+1. Example: `<pagedown-editor ng-model="data.content" placeholder="{{data.placeholder}} or anything"></pagedown-editor>` 
 
 #### editor-class
 
 1. An expression to use as [ngClass](https://docs.angularjs.org/api/ng/directive/ngClass).
 1. *Expression*: Default to `wmd-input`
-1. Example: `<pagedown-editor content="data.content" editorClass="{'a-class': true}"></pagedown-editor>`
-1. Example: `<pagedown-editor content="data.content" editorClass="'a-class another-class'"></pagedown-editor>`
-1. Example: `<pagedown-editor content="data.content" editorClass="aScopeVariable"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" editorClass="{'a-class': true}"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" editorClass="'a-class another-class'"></pagedown-editor>`
+1. Example: `<pagedown-editor ng-model="data.content" editorClass="aScopeVariable"></pagedown-editor>`
 
 #### editor-rows
 
@@ -104,5 +104,4 @@ Options:
 ```
 
 ## TODO
-1. Grunt setup to minify files.
 1. Extend PageDown editor to allow override of hyper link insertion.
