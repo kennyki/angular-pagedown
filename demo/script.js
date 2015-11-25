@@ -1,17 +1,17 @@
 angular.module("myApp", ["ui.pagedown"])
 
 .controller("myController", function($scope, $window, $q) {
-  
+
   $scope.data = {
     content: "Wee *wang* **wang**!",
     placeholder: "Enter something here.."
   };
-  
+
   $scope.showSomeHelp = function showSomeHelp() {
     // this is what the default will do
     $window.open("http://daringfireball.net/projects/markdown/syntax", "_blank");
   };
-  
+
   $scope.insertImage = function insertImage() {
     var deferred = $q.defer();
     
@@ -20,5 +20,9 @@ angular.module("myApp", ["ui.pagedown"])
     
     return deferred.promise;
   };
-  
+
+  $scope.shout = function shout() {
+    // test update the content programatically
+    $scope.data.content += '\n\nTell Laura I love her';
+  };
 });

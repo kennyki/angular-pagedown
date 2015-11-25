@@ -6,7 +6,7 @@
     "angular-pagedown.js"
   ],
   "dependencies": {
-  	"angular": "~1.2",
+  	"angular": "~1.4",
     "pagedown": "^1.1.0"
   }
 }

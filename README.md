@@ -52,6 +52,11 @@ Options:
 1. Should a live preview be displayed. 
 1. *Boolean*: Default to true
 
+#### show-button-bar
+
+1. Should the button bar be displayed. 
+1. *Boolean*: Default to true
+
 #### help
 
 1. An expression to invoke upon clicking the help (?) button. 

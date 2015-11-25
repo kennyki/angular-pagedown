@@ -7,21 +7,23 @@ var minifyCss = require('gulp-minify-css');
 var browserSync = require('browser-sync').create();
 
 gulp.task('lint', function() {
-    return gulp.src(['*.js', '!*.min.js'])
+    return gulp.src('angular-pagedown.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 gulp.task('scripts', function() {
-    return gulp.src(['*.js', '!*.min.js'])
-        .pipe(rename('.min.js'))
-        .pipe(uglify());
+    return gulp.src('angular-pagedown.js')
+        .pipe(rename('angular-pagedown.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('styles', function() {
-  return gulp.src(['*.css', '!*.min.css'])
-    .pipe(rename('.min.css'))
-    .pipe(minifyCss({compatibility: 'ie8'}));
+  return gulp.src('angular-pagedown.css')
+    .pipe(rename('angular-pagedown.min.css'))
+    .pipe(minifyCss({compatibility: 'ie8'}))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('browser-sync', function() {
@@ -36,9 +38,9 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['*.js', '!*.min.js'], ['lint', 'scripts']);
-    gulp.watch(['*.css', '!*.min.css'], ['styles']);
-    gulp.watch(['demo/*.html', '*.js', '!*.min.js', '*.css', '!*.min.css']).on("change", browserSync.reload);
+    gulp.watch('angular-pagedown.js', ['lint', 'scripts']);
+    gulp.watch('angular-pagedown.css', ['styles']);
+    gulp.watch(['demo/*.html', 'angular-pagedown.min.js', 'angular-pagedown.min.css']).on("change", browserSync.reload);
 });
 
 gulp.task('default', ['lint', 'scripts', 'styles', 'watch']);

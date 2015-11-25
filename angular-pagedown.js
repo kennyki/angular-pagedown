@@ -18,7 +18,7 @@
                     return '<blockquote>' + rbg(inner) + '</blockquote>\n';
                 });
             });
-    
+
             return {
                 restrict: 'E',
                 require: 'ngModel',
@@ -26,6 +26,7 @@
                     ngModel: '=',
                     placeholder: '@',
                     showPreview: '@',
+                    showButtonBar: '@',
                     help: '&',
                     insertImage: '&',
                     editorClass: '=?',
@@ -51,6 +52,7 @@
     
                     // just hide the preview, we still need it for 'onPreviewRefresh' hook
                     var previewHiddenStyle = scope.showPreview == 'false' ? 'display: none;' : '';
+                    var buttonBarHiddenStyle = scope.showButtonBar == 'false' ? 'display: none;' : '';
     
                     var placeholder = attrs.placeholder || '';
                     var editorRows = attrs.editorRows || '10';
@@ -58,7 +60,7 @@
                     var newElement = $compile(
                         '<div>' +
                         '<div class="wmd-panel">' +
-                        '<div id="wmd-button-bar-' + editorUniqueId + '"></div>' +
+                        '<div id="wmd-button-bar-' + editorUniqueId + '" style="' + buttonBarHiddenStyle + '"></div>' +
                         '<textarea id="wmd-input-' + editorUniqueId + '" placeholder="' + placeholder + '" ng-model="ngModel"' +
                         ' ng-change="changed()"' +
                         ' rows="' + editorRows + '" ' + (scope.editorClass ? 'ng-class="editorClass"' : 'class="wmd-input"') + '>' +

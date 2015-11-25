@@ -1,27 +1,28 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>angular-pagedown demo</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="angular-pagedown.css">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>angular-pagedown demo</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="angular-pagedown.min.css">
 		<style>
 			.wmd-button > span {
 				background-image: url(bower_components/pagedown/wmd-buttons.png);
 			}
 		</style>
-        <script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/pagedown/Markdown.Converter.js"></script>
 		<script src="bower_components/pagedown/Markdown.Sanitizer.js"></script>
 		<script src="bower_components/pagedown/Markdown.Extra.js"></script>
 		<script src="bower_components/pagedown/Markdown.Editor.js"></script>
-		<script src="angular-pagedown.js"></script>
+		<script src="angular-pagedown.min.js"></script>
 		<script src="demo/script.js"></script>
-    </head>
-    <body ng-app="myApp">
+	</head>
+	<body ng-app="myApp">
 		<div ng-controller="myController">
+			<button ng-click="shout()">Tell the world you love her</button>
 			<pagedown-editor ng-model="data.content"></pagedown-editor>
 			<br>
 			<hr>
@@ -29,5 +30,5 @@
 			<h3>This is an independent viewer</h3>
 			<pagedown-viewer content="data.content"></pagedown-viewer>
 		</div>
-    </body>
+	</body>
 </html>
